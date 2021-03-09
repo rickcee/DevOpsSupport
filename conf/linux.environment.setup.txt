@@ -1,0 +1,13 @@
+export base_maven=/Users/rickcee/devops_work_dir
+export base_filesystem=/Users/rickcee/devops_work_dir
+
+mkdir dev_apps
+mkdir uat_apps
+mkdir stage_apps
+mkdir prod_apps
+
+mkdir dev_repo
+mkdir uat_repo
+mkdir stage_repo
+mkdir prod_repo
+
