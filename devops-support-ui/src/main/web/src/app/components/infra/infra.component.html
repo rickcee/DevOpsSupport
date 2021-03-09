@@ -1,0 +1,13 @@
+<clr-datagrid style="width: 80%; margin: auto;">
+    <clr-dg-column>ID</clr-dg-column>
+    <clr-dg-column>URL</clr-dg-column>
+    <clr-dg-column>Description</clr-dg-column>
+
+    <clr-dg-row *ngFor="let repo of data">
+        <clr-dg-cell>{{repo.id}}</clr-dg-cell>
+        <clr-dg-cell>{{repo.url}}</clr-dg-cell>
+        <clr-dg-cell>{{repo.description}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{data.length}} repositories</clr-dg-footer>
+</clr-datagrid>

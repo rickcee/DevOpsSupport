@@ -1,0 +1,47 @@
+<nav class="subnav">
+  <ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link" routerLink="permissions" routerLinkActive="active">User Permissions</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="environments" routerLinkActive="active">Release Environments</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="repositories" routerLinkActive="active">VCS Repositories</a>
+    </li>
+</ul>
+</nav>
+
+<div class="content-container">
+  <div class="content-area">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<!--
+    <clr-tabs>
+      <clr-tab>
+        <button clrTabLink>User Permissions</button>
+        <ng-template [(clrIfActive)]="userPermsActive">
+            <clr-tab-content>
+              <app-userpermission></app-userpermission>
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
+    <clr-tab>
+        <button clrTabLink>Release Environment</button>
+        <ng-template [(clrIfActive)]="environmentActive">
+            <clr-tab-content>
+              <app-environment></app-environment>
+            </clr-tab-content>
+        </ng-template>
+      </clr-tab>      
+      <clr-tab>
+        <button clrTabLink>VCS Repositories</button>
+        <ng-template [(clrIfActive)]="reposActive">
+            <clr-tab-content>
+              <app-repository></app-repository>
+            </clr-tab-content>
+        </ng-template>
+    </clr-tab>
+  </clr-tabs>
+-->

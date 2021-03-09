@@ -1,0 +1,23 @@
+<div class="login-wrapper">
+  <form #loginForm="ngForm" class="login" (submit)="login()">
+      <section class="title">
+          <h3 class="welcome">Welcome to</h3>
+          DevOps Support Dashboard
+          <!--<h5 class="hint">Use your Company ID to sign in or create one now</h5>-->
+      </section>
+      <div class="login-group">
+          <clr-input-container>
+              <label class="clr-sr-only required">Username</label>
+              <input type="text" name="username" clrInput placeholder="Username" [(ngModel)]="credentials.username" required/>
+          </clr-input-container>
+          <clr-password-container>
+              <label class="clr-sr-only required">Password</label>
+              <input type="password" name="password" clrPassword placeholder="Password" [(ngModel)]="credentials.password" required/>
+          </clr-password-container>
+          <div [ngClass]=" { 'active' : errorLoggingIn } " class="error">
+              Invalid user name or password
+          </div>
+          <button type="submit" [disabled]="!loginForm.valid" class="btn btn-outline">Login</button>
+      </div>
+  </form>
+</div>

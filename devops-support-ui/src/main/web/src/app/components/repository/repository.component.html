@@ -1,0 +1,46 @@
+<div class="limit-height">
+
+  <!--  class="datagrid-compact" -->
+  <clr-datagrid [(clrDgSingleSelected)]="selectedRepo" [clrDgRowSelection]="true" #datagridRef>
+    <clr-dg-column class="id-column">ID</clr-dg-column>
+    <clr-dg-column>Type</clr-dg-column>
+    <clr-dg-column>URL</clr-dg-column>
+    <!-- [clrDgField]="'description'" -->
+    <clr-dg-column>Description</clr-dg-column>
+    <clr-dg-column>Other Alias</clr-dg-column>
+    <clr-dg-column>FS Checkout Location</clr-dg-column>
+    <clr-dg-column>Tag Base</clr-dg-column>
+    <clr-dg-column>Group Email Address</clr-dg-column>
+    <clr-dg-column>Environment Group</clr-dg-column>
+    <clr-dg-column>Disabled?</clr-dg-column>
+
+    <clr-dg-row *clrDgItems="let repo of data" [clrDgItem]="repo">
+        <clr-dg-cell>{{repo.id}}</clr-dg-cell>
+        <clr-dg-cell>{{repo.type.name}}</clr-dg-cell>
+        <clr-dg-cell>{{repo.url}}</clr-dg-cell>
+        <clr-dg-cell>{{repo.description}}</clr-dg-cell>
+        <clr-dg-cell>{{repo.extAlias}}</clr-dg-cell>
+        <clr-dg-cell>{{repo.fsLocation}}</clr-dg-cell>
+        <clr-dg-cell>{{repo.tagBase}}</clr-dg-cell>
+        <clr-dg-cell>{{repo.groupEmailAddress}}</clr-dg-cell>
+        <clr-dg-cell>{{repo.environmentGroup}}</clr-dg-cell>
+        <clr-dg-cell><input type="checkbox" clrCheckbox [(ngModel)]="repo.disabled" disabled/></clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{data.length}} repositories</clr-dg-footer>
+  </clr-datagrid>
+
+  <div class="clr-row">
+    <div class="clr-col-md-8"></div>
+    <div class="clr-col-md-4">
+      <button class="btn btn-sm btn-info-outline" (click)="editRepoModal.open(newRepo)">Add New</button>
+      <button class="btn btn-sm btn-info-outline" (click)="editRepoModal.open(selectedRepo)" *ngIf="selectedRepo">Modify Selected</button>
+      <!--<button class="btn btn-sm btn-warning-outline" *ngIf="selectedRepo">Disable Selected</button>-->
+    </div>
+  </div>
+
+  <div *ngIf="selectedRepo">Selected: {{selectedRepo.url}}</div>
+
+  <app-repositoryedit #editRepo></app-repositoryedit>
+
+</div>

@@ -1,0 +1,27 @@
+<header class="header header-4">
+  <div class="branding">
+      <a href="..." class="nav-link">
+          <clr-icon shape="atom"></clr-icon>
+          <span class="title">DevOps Support #</span>
+      </a>
+  </div>
+  <div class="header-nav">
+    <a *ngIf='isRole("ROLE_RO") || isRole("ROLE_ADMIN") || isRole("ROLE_AUDIT")' routerLink="dashboard" class="nav-link" routerLinkActive="active"><span class="nav-text">Dashboard</span></a>
+    <a *ngIf='isRole("ROLE_ADMIN")' routerLink="management" class="nav-link" routerLinkActive="active"><span class="nav-text">Management</span></a>
+    <a *ngIf='isRole("ROLE_AUDIT") || isRole("ROLE_ADMIN")' routerLink="audit" class="nav-link" routerLinkActive="active"><span class="nav-text">Audit</span></a>
+  </div>  
+  
+  <div class="header-actions">
+      <clr-dropdown>
+          <button class="nav-icon" clrDropdownTrigger aria-label="toggle settings menu">
+              <clr-icon shape="cog"></clr-icon>
+              <clr-icon shape="caret down"></clr-icon>
+          </button>
+          <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+              <a href="..." clrDropdownItem>About</a>
+              <a href="..." clrDropdownItem>Preferences</a>
+              <a href="login" clrDropdownItem>Log out</a>
+          </clr-dropdown-menu>
+      </clr-dropdown>
+  </div>
+</header>

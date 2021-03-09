@@ -1,0 +1,8 @@
+.dashboard-text {
+    font-size: 64px; 
+    color: #CE5937; 
+    text-align: center; 
+    text-shadow: 5px 5px 2px black;
+    margin-top: 15px; 
+    margin-bottom: 15px;
+}

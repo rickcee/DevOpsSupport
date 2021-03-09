@@ -1,0 +1,47 @@
+<form clrForm novalidate #f="ngForm" (ngSubmit)="onSubmit()">
+  <clr-modal [(clrModalOpen)]="show" [clrModalSize]='lg'>
+      <div class="modal-title">Add/Modify Release Environment</div>
+
+      <div class="modal-body">
+          <div *ngIf="envToEdit">
+              <clr-input-container>
+                  <label class="clr-col-12 clr-col-md-2">Group</label>
+                  <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="envToEdit.environmentGroup" name="environmentGroup" disabled required />
+                  <clr-control-helper>The environment Group.</clr-control-helper>
+              </clr-input-container>            
+              <clr-input-container>
+                <label class="clr-col-12 clr-col-md-2">ID</label>
+                <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="envToEdit.environmentId" name="environmentId" disabled required />
+                <clr-control-helper>The environment ID.</clr-control-helper>
+            </clr-input-container>            
+            <clr-input-container>
+                <label class="clr-col-12 clr-col-md-2">Name</label>
+                <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="envToEdit.description" name="description" required size=64/>
+                <clr-control-helper>Name of the Environment.</clr-control-helper>
+                <clr-control-error>You must provide a name.</clr-control-error>
+            </clr-input-container>
+            <clr-input-container>
+                  <label class="clr-col-12 clr-col-md-2">Base File System Location</label>
+                  <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="envToEdit.baseLocation" name="baseLocation" size=64/>
+                  <clr-control-helper>Base File System Location (Unix Style).</clr-control-helper>
+                  <clr-control-error>You must provide a file system location.</clr-control-error>
+              </clr-input-container>
+              <clr-input-container>
+                <label class="clr-col-12 clr-col-md-2">Nexus Upload URL</label>
+                <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="envToEdit.nexusUploadUrl" name="nexusUploadUrl" size=64/>
+                <clr-control-helper>Nexus parameter to be used by Maven to upload dependencies.</clr-control-helper>
+            </clr-input-container>
+            <clr-input-container>
+                <label class="clr-col-12 clr-col-md-2">Nexus Browse URL</label>
+                <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="envToEdit.nexusBrowseUrl" name="nexusBrowseUrl" size=64/>
+                <clr-control-helper>Nexus URL used to gather evidence for Audit purposes.</clr-control-helper>
+            </clr-input-container>
+          </div>
+      </div>
+
+      <div class="modal-footer">
+          <button (click)="close()" class="btn btn-default">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+  </clr-modal>
+</form>

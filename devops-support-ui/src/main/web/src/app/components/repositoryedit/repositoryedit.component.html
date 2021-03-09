@@ -1,0 +1,74 @@
+<form clrForm novalidate #f="ngForm" (ngSubmit)="onSubmit();">
+  <clr-modal [(clrModalOpen)]="show" [clrModalSize]='lg'>
+      <div class="modal-title">Add/Modify VCS Repository</div>
+
+      <div class="modal-body">
+          <div *ngIf="repositoryToEdit">
+            <div class="clr-control-container" style="Xbackground-color: yellow; margin-top: 5px; text-align: left;">
+                <div clrSelect class="" style="Xbackground-color: green;">
+                    <select [compareWith]="compareRepoType" id="typeRepos" name="typeRepos" [(ngModel)]="repositoryToEdit.type">
+                        <option *ngFor="let type of repositoryTypeData" [ngValue]="type">{{type.name}}</option>
+                    </select>
+                    <clr-control-helper>VCS Type</clr-control-helper>
+                </div>
+            </div>
+
+            <clr-input-container>
+                  <label class="clr-col-12 clr-col-md-2">ID</label>
+                  <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="repositoryToEdit.id" name="id" disabled/>
+                  <clr-control-helper>ID will be automatically assigned when saving.</clr-control-helper>
+              </clr-input-container>
+              <clr-input-container>
+                  <label class="clr-col-12 clr-col-md-2">URL</label>
+                  <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="repositoryToEdit.url" name="url" required size=60/>
+                  <clr-control-helper>URL of the VCS Repository.</clr-control-helper>
+                  <clr-control-error>You must provide a repository URL.</clr-control-error>
+              </clr-input-container>            
+              <clr-input-container>
+                  <label class="clr-col-12 clr-col-md-2">Description</label>
+                  <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="repositoryToEdit.description" name="description" required size=60/>
+                  <clr-control-helper>Description of the VCS Repository.</clr-control-helper>
+                  <clr-control-error>You must provide a description.</clr-control-error>
+              </clr-input-container>
+              <clr-input-container>
+                  <label class="clr-col-12 clr-col-md-2">Alias</label>
+                  <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="repositoryToEdit.extAlias" name="extAlias" size=60/>
+                  <clr-control-helper>Other alias for this repository.</clr-control-helper>
+              </clr-input-container>
+              <clr-input-container>
+                  <label class="clr-col-12 clr-col-md-2">Checkout Location</label>
+                  <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="repositoryToEdit.fsLocation" name="fsLocation" size=60/>
+                  <clr-control-helper>Location in the File System where the code will be checked out.</clr-control-helper>
+              </clr-input-container>
+              <clr-input-container>
+                <label class="clr-col-12 clr-col-md-2">Tag/Branch Base</label>
+                <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="repositoryToEdit.tagBase" name="tagBase" size=60/>
+                <clr-control-helper>Tag/Branch prefix in VCS.</clr-control-helper>
+              </clr-input-container>
+              <clr-input-container>
+                <label class="clr-col-12 clr-col-md-2">Group EMail Address</label>
+                <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="repositoryToEdit.groupEmailAddress" name="groupEmailAddress" size=60/>
+                <clr-control-helper>Email address used for group notifications.</clr-control-helper>
+              </clr-input-container>
+              <clr-input-container>
+                <label class="clr-col-12 clr-col-md-2">Environment Group</label>
+                <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="repositoryToEdit.environmentGroup" name="environmentGroup" size=60/>
+                <clr-control-helper>Environment values to be used for this specific project.</clr-control-helper>
+              </clr-input-container>
+              <clr-checkbox-container>
+                <clr-checkbox-wrapper>
+                  <input type="checkbox" clrCheckbox [(ngModel)]="repositoryToEdit.disabled" name="isDisabled" />
+                  <label>Disabled?</label>
+                </clr-checkbox-wrapper>
+              </clr-checkbox-container>
+              
+          </div>
+          
+      </div>
+
+      <div class="modal-footer">
+          <button (click)="close()" class="btn btn-default">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+  </clr-modal>
+</form>

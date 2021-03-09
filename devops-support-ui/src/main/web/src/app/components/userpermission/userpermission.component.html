@@ -1,0 +1,76 @@
+<div style="margin: 20px;">
+  <div class="limit-height">
+
+    <!--
+    <button class="btn btn-sm btn-info-outline" (click)="modal.open()" >Add New</button>
+
+    [{{modal}}]
+    -->
+    <!--
+  <div class="clr-row" style="height: 30px; ">
+    <div class="clr-col-md-8" style="background-color: red; vertical-align: top;">
+      <clr-input-container style="background-color: green; vertical-align: top;">
+        <input clrInput type="text" [(ngModel)]="usernameToQuery" name="username" required size=32 />
+        <clr-control-helper>Enter a valid username to search repository permissions.</clr-control-helper>
+      </clr-input-container>  
+    </div>
+    <div class="clr-col-md-1" style="background-color: yellow;">
+      <button class="btn btn-sm btn-info-outline" (click)="getUserPermissions()">Search</button>
+    </div>
+  </div>
+  -->
+
+  <div class="clr-row">
+    <div class="clr-col-2">
+      <span>Username: </span>      
+    </div>
+    <div class="clr-col-6">
+        <input type="text" [(ngModel)]="usernameToQuery" name="username" required size=64 />
+        <clr-control-helper>Enter a valid username to search repository permissions.</clr-control-helper>
+    </div>
+    <div class="clr-col-2">
+      <button class="btn btn-sm btn-info-outline" (click)="getUserPermissions()" [disabled]="usernameToQuery == null || usernameToQuery.trim() == ''">Search</button>
+    </div>
+  </div>
+
+  <div *ngIf="displayError">
+    <p><span style="color:orange">No username found!</span></p>
+  </div>
+
+  <div *ngIf="data">
+    <div>
+      <p>Full Name: <span style="color:yellow">{{data.fullName}}</span></p>
+      <p>Disabled: <span style="color:yellow">{{data.disabled}}</span></p>
+      <p>Repositories: </p>
+    </div>
+    
+    <div>
+      <clr-datagrid [(clrDgSingleSelected)]="selectedRepo" [clrDgRowSelection]="true" #datagridRef >
+        <clr-dg-column class="id-column">ID</clr-dg-column>
+        <clr-dg-column>URL</clr-dg-column>
+        <clr-dg-column>Description</clr-dg-column>
+    
+        <clr-dg-row *clrDgItems="let repo of data.repositories" [clrDgItem]="repo">
+            <clr-dg-cell>{{repo.id}}</clr-dg-cell>
+            <clr-dg-cell>{{repo.url}}</clr-dg-cell>
+            <clr-dg-cell>{{repo.description}}</clr-dg-cell>
+        </clr-dg-row>
+    
+        <clr-dg-footer>{{data.repositories.length}} repositories</clr-dg-footer>
+      </clr-datagrid>
+    
+      <div *ngIf="selectedRepo">Selected: {{selectedRepo.url}}</div>
+      <button class="btn btn-sm btn-danger-outline" (click)="removePermission()" *ngIf="selectedRepo">Remove Selected</button>
+    
+    </div>
+  </div>
+
+  <app-userpermissionadd></app-userpermissionadd>    
+
+<hr/>
+<div style="text-align: center;">
+  <button class="btn btn-sm btn-success-outline" (click)="modal.open()" >Add New Permission</button>
+</div>
+
+</div>
+</div>

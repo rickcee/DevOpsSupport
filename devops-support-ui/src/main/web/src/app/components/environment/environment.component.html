@@ -1,0 +1,36 @@
+<div style="margin: 20px;">
+  <div class="limit-height">
+
+    <clr-datagrid [(clrDgSingleSelected)]="selectedEnv" [clrDgRowSelection]="true" #envDataGrid>
+      <clr-dg-column class="id-column">Group</clr-dg-column>
+      <clr-dg-column class="id-column">ID</clr-dg-column>
+      <clr-dg-column>Description</clr-dg-column>
+      <clr-dg-column>Base Location</clr-dg-column>
+      <clr-dg-column>Nexus Upload URL</clr-dg-column>
+      <clr-dg-column>Nexus Browse URL</clr-dg-column>
+  
+      <clr-dg-row *clrDgItems="let env of environmentData" [clrDgItem]="env">
+          <clr-dg-cell>{{env.environmentGroup}}</clr-dg-cell>
+          <clr-dg-cell>{{env.environmentId}}</clr-dg-cell>
+          <clr-dg-cell>{{env.description}}</clr-dg-cell>
+          <clr-dg-cell>{{env.baseLocation}}</clr-dg-cell>
+          <clr-dg-cell>{{env.nexusUploadUrl}}</clr-dg-cell>
+          <clr-dg-cell>{{env.nexusBrowseUrl}}</clr-dg-cell>
+      </clr-dg-row>
+  
+      <clr-dg-footer>{{environmentData.length}} environment entries</clr-dg-footer>
+    </clr-datagrid>
+
+    <div class="clr-row">
+      <div class="clr-col-md-8"></div>
+      <div class="clr-col-md-4">
+        <button class="btn btn-sm btn-info-outline" (click)="editEnvModal.open(selectedEnv)" *ngIf="selectedEnv">Modify Selected</button>
+      </div>
+    </div>
+
+    <div *ngIf="selectedEnv">Hmm Selected: {{selectedEnv.id}}</div>
+  </div>
+
+  <app-environment-edit #editEnv></app-environment-edit>
+
+</div>

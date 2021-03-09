@@ -1,0 +1,34 @@
+<form clrForm novalidate #f="ngForm" (ngSubmit)="onSubmit();">
+  <clr-modal [(clrModalOpen)]="show" [clrModalSize]='lg'>
+      <div class="modal-title">Add User-Repository Permission</div>
+
+      <div class="modal-body">
+          <div>
+              <clr-input-container>
+                  <label class="clr-col-12 clr-col-md-2">Username</label>
+                  <input class="clr-col-12 clr-col-md-8" clrInput type="text" [(ngModel)]="username" name="username" />
+                  <clr-control-helper>The user ID. Must be unique.</clr-control-helper>
+              </clr-input-container>
+
+              <div class="clr-control-container">
+                <div class="clr-select-wrapper">
+                  <select clrSelect name="repositories" [(ngModel)]="selectedRepo">
+                    <option> Choose Repository</option>
+                    <option *ngFor="let repo of repositoryData" [ngValue]="repo">{{repo.type.name}} - {{repo.description}}</option>
+                  </select>
+                  <clr-icon class="clr-validate-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="clr-subtext">VCS Repository</span>
+              </div>
+          </div>
+
+        </div>
+
+      <div class="modal-footer">
+          <button (click)="close()" class="btn btn-default">Cancel</button>
+          <button type="submit" class="btn btn-primary" [disabled]="username == null || selectedRepo == null">Save</button>
+      </div>
+  </clr-modal>
+</form>
+
+<simple-notifications></simple-notifications>

@@ -1,0 +1,226 @@
+<p>
+  Dummy Data - Not Implemented! (Yet)
+</p>
+
+<div class="clr-row">
+  <div class="clr-col-md-3 clr-col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Total LifeTime PROD Releases</h3>
+      </div>      
+      <div class="card-block">
+        <div class="card-text, dashboard-text">
+          <label>7</label>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="javascript:void(0)" class="btn btn-sm btn-link">View Details...</a>
+      </div>
+    </div>
+  </div>
+  <div class="clr-col-md-3 clr-col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Total PROD Releases past 30 days</h3>
+      </div>      
+      <div class="card-block">
+        <div class="card-text, dashboard-text">
+          <label>2</label>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="javascript:void(0)" class="btn btn-sm btn-link">View Details...</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="clr-col-md-3 clr-col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Pending PROD Releases past 30 days</h3>
+      </div>
+      <div class="card-block">
+        <div class="card-text, dashboard-text">
+          <label>4</label>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="javascript:void(0)" class="btn btn-sm btn-link">View Details...</a>
+      </div>
+    </div>
+  </div>
+  <!--
+  <div class="clr-col-md-2 clr-col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Top PROD Releases past 6 months</h3>
+      </div>      
+      <div class="card-block">
+        <div class="card-text, dashboard-text">
+          <label>15</label>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="javascript:void(0)" class="btn btn-sm btn-link">View Details...</a>
+      </div>
+    </div>
+  </div>
+  -->
+</div>
+
+<div class="clr-row">
+
+
+  <div class="clr-col-md-4 clr-col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Total PROD releases last 6 months</h3>
+      </div>
+      <div class="card-block">
+
+        <canvas baseChart 
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [colors]="barChartColors"
+          [chartType]="barChartType">
+        </canvas>
+
+      </div>
+      <div class="card-footer">
+        <a href="javascript:void(0)" class="btn btn-sm btn-link">View Details...</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="clr-col-md-4 clr-col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">TOP 5 PROD releases last 6 months</h3>
+      </div>
+      <div class="card-block">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Project Name</th>
+              <th>Number of Releases</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Reference Data Services</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <td>Analytic Services</td>
+              <td>11</td>
+            </tr>
+            <tr>
+              <td>Customer Information Services</td>
+              <td>9</td>
+            </tr>
+            <tr>
+              <td>Account Information Services</td>
+              <td>9</td>
+            </tr>
+            <tr>
+              <td>Unified Data Services</td>
+              <td>6</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer">
+        <a href="javascript:void(0)" class="btn btn-sm btn-link">View Details...</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="clr-row">
+
+
+  <div class="clr-col-md-5 clr-col-12">
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">TOP 10 Releasers</h3>
+      </div>
+      <div class="card-block">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Full Name</th>
+              <th>Number of Releases</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>developer3</td>
+              <td>Ms. Developer #3</td>
+              <td>15</td>
+            </tr>
+            <tr>
+              <td>developer2</td>
+              <td>Mr. Developer #3</td>
+              <td>11</td>
+            </tr>
+            <tr>
+              <td>developer7</td>
+              <td>Mr. Developer #3</td>
+              <td>9</td>
+            </tr>
+            <tr>
+              <td>developer4</td>
+              <td>Ms. Developer #3</td>
+              <td>9</td>
+            </tr>
+            <tr>
+              <td>developer1</td>
+              <td>Mr. Developer #3</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>developer9</td>
+              <td>Mr. Developer #3</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>developer6</td>
+              <td>Mr. Developer #3</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>developer5</td>
+              <td>Mr. Developer #3</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td>developer8</td>
+              <td>Ms. Developer #3</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>developer10</td>
+              <td>Mr. Developer #3</td>
+              <td>0</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-footer">
+        <a href="javascript:void(0)" class="btn btn-sm btn-link">View Details...</a>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="row">
+  <button type="submit" (click)="showNotification()">Show Notification</button>
+</div>

@@ -1,0 +1,8 @@
+.id-column {
+    width: 50px;
+}
+
+.limit-height clr-datagrid {
+    height: 500px;
+    margin: 20px;
+}

@@ -1,0 +1,124 @@
+<div style="margin-left: 15px; margin-top: 5px;">
+
+    <form clrForm clrLayout="horizontal">
+        <div class="clr-row" style="Xbackground-color: red;">
+            <div class="clr-col-md-4">
+                <clr-input-container>
+                    <label for="buildNumber">Build Number</label>
+                    <input clrInput type="text" [(ngModel)]="searchParams.buildNumber" name="buildNumber" />
+                </clr-input-container>
+            </div>
+            <div class="clr-col-md-4">
+                <clr-input-container>
+                    <label for="triggeredBy">Triggered By</label>
+                    <input clrInput type="text" [(ngModel)]="searchParams.triggeredBy" name="triggeredBy" />
+                </clr-input-container>
+            </div>
+            <div class="clr-col-md-4">
+                <clr-input-container>
+                    <label for="approvedBy">Approved By</label>
+                    <input clrInput type="text" [(ngModel)]="searchParams.approvedBy" name="approvedBy" />
+                </clr-input-container>
+            </div>
+        </div>
+
+        <div class="clr-row" style="Xbackground-color: red;">
+            <div class="clr-col-md-4">
+                <clr-date-container>
+                    <label for="dateFrom">Date From</label>
+                    <input type="date" clrDate name="dateFrom" [(clrDate)]="searchParams.buildDateFrom">
+                </clr-date-container>
+            </div>
+            <div class="clr-col-md-4">
+                <clr-date-container>
+                    <label for="dateTo">Date To</label>
+                    <input type="date" clrDate name="dateTo" [(clrDate)]="searchParams.buildDateTo">
+                </clr-date-container>
+            </div>
+            <div class="clr-col-md-4">
+                <clr-checkbox-container>
+                    <clr-checkbox-wrapper>
+                        <input type="checkbox" clrCheckbox [(ngModel)]="searchParams.finalized" name="isFinalized" />
+                        <label>Only finalized releases.</label>
+                    </clr-checkbox-wrapper>
+                </clr-checkbox-container>
+            </div>
+        </div>
+
+        <div class="clr-row" style="Xbackground-color: red;">
+            <div style="margin-top: 15px; text-align: center;">
+                <button (click)="searchBuilds()" class="btn btn-default btn-sm ">Search Builds</button>
+            </div>
+        </div>
+
+    </form>
+
+    <!--
+                <clr-control-helper>Helper text that shows while it is pristine and valid</clr-control-helper>
+                <clr-control-error>Error message that appears after focus is lost and control is invalid</clr-control-error>
+                -->
+
+</div>
+
+<div style="margin: 10px;" class="limit-height">
+    <clr-datagrid [(clrDgSingleSelected)]="selectedBuild" style="width: 80%; margin: auto;" class="datagrid-compact">
+        <clr-dg-placeholder>We couldn't find any builds with the requested parameters!</clr-dg-placeholder>
+
+        <clr-dg-column [clrDgColType]="'string'">Job ID</clr-dg-column>
+        <clr-dg-column [clrDgColType]="'number'">Build ID</clr-dg-column>
+        <clr-dg-column [clrDgColType]="'string'">Triggered By</clr-dg-column>
+        <clr-dg-column>Triggered On</clr-dg-column>
+        <clr-dg-column>Description</clr-dg-column>
+
+        <clr-dg-row *clrDgItems="let build of buildEntries" [clrDgItem]="build">
+            <clr-dg-cell [style.width.%]="10">{{build.jobId}}</clr-dg-cell>
+            <clr-dg-cell [style.width.%]="10">{{build.buildNumber}}</clr-dg-cell>
+            <clr-dg-cell>{{build.modifiedBy}}</clr-dg-cell>
+            <clr-dg-cell>{{build.modifiedOn | date:'yyyy-MM-dd HH:mm:ss Z'}}</clr-dg-cell>
+            <clr-dg-cell>{{build.buildDescription}}</clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>{{buildEntries.length}} entries.</clr-dg-footer>
+    </clr-datagrid>
+    <div style="margin-top: 15px;">
+        <button (click)="searchAuditEntries()" [disabled]="!selectedBuild" class="btn btn-default btn-sm ">Search Audit
+            Entries</button>
+        <button (click)="downloadPdf()" [disabled]="!selectedBuild" class="btn btn-default btn-sm ">Download
+            Audit Report</button>
+    </div>
+</div>
+<!--
+<div style="margin: 15px;">
+    Selected Build: <span class="username" *ngIf="selectedBuild">{{selectedBuild.buildNumber}}</span>
+</div>
+-->
+
+<div style="margin: 10px;" class="limit-height-audit">
+    <clr-datagrid style="width: 80%; margin: auto;" class="datagrid-compact">
+        <clr-dg-placeholder>We couldn't find any audit entries!</clr-dg-placeholder>
+
+        <clr-dg-column [clrDgColType]="'string'">Environment</clr-dg-column>
+        <clr-dg-column [clrDgColType]="'string'">Status</clr-dg-column>
+        <clr-dg-column [clrDgColType]="'string'">Approver</clr-dg-column>
+        <clr-dg-column [clrDgSortOrder]="auditSort" [clrDgField]="'modifiedOn'" [clrDgColType]="'string'" [clrDgSortBy]="auditDateComparator">TimeStamp</clr-dg-column>
+        <clr-dg-column>Release Ticket ID</clr-dg-column>
+        <clr-dg-column>ExceptionMsg</clr-dg-column>
+
+        <clr-dg-row *clrDgItems="let audit of auditEntries" [clrDgItem]="audit">
+            <clr-dg-cell>{{audit.environment}}</clr-dg-cell>
+            <clr-dg-cell>{{audit.status}}</clr-dg-cell>
+            <clr-dg-cell>{{audit.approver}}</clr-dg-cell>
+            <clr-dg-cell>{{audit.modifiedOn | date:'yyyy-MM-dd HH:mm:ss Z'}}</clr-dg-cell>
+            <clr-dg-cell>{{audit.releaseTicketId}}</clr-dg-cell>
+            <clr-dg-cell>{{audit.exceptionMsg}}</clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>{{auditEntries.length}} entries.</clr-dg-footer>
+    </clr-datagrid>
+</div>
+<!--
+    [(clrDgSingleSelected)]="selectedEntry" 
+<div style="margin: 15px;">
+    Selected entry: <span class="username" *ngIf="selectedEntry">{{selectedEntry.environment}}</span>
+</div>
+-->
