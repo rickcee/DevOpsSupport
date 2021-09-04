@@ -61,18 +61,18 @@
 </div>
 
 <div style="margin: 10px;" class="limit-height">
-    <clr-datagrid [(clrDgSingleSelected)]="selectedBuild" style="width: 80%; margin: auto;" class="datagrid-compact">
+    <clr-datagrid [(clrDgSingleSelected)]="selectedBuild" style="width: 98%; margin: auto;" class="datagrid-compact" [clrDgLoading]="loadingBuilds" >
         <clr-dg-placeholder>We couldn't find any builds with the requested parameters!</clr-dg-placeholder>
 
-        <clr-dg-column [clrDgColType]="'string'">Job ID</clr-dg-column>
-        <clr-dg-column [clrDgColType]="'number'">Build ID</clr-dg-column>
-        <clr-dg-column [clrDgColType]="'string'">Triggered By</clr-dg-column>
-        <clr-dg-column>Triggered On</clr-dg-column>
+        <clr-dg-column [style.width.px]="200" [clrDgColType]="'string'">Job ID</clr-dg-column>
+        <clr-dg-column [style.width.px]="100" [clrDgColType]="'number'">Build ID</clr-dg-column>
+        <clr-dg-column [style.width.px]="100" [clrDgColType]="'string'">Triggered By</clr-dg-column>
+        <clr-dg-column [style.width.px]="250">Triggered On</clr-dg-column>
         <clr-dg-column>Description</clr-dg-column>
 
         <clr-dg-row *clrDgItems="let build of buildEntries" [clrDgItem]="build">
-            <clr-dg-cell [style.width.%]="10">{{build.jobId}}</clr-dg-cell>
-            <clr-dg-cell [style.width.%]="10">{{build.buildNumber}}</clr-dg-cell>
+            <clr-dg-cell>{{build.jobId}}</clr-dg-cell>
+            <clr-dg-cell>{{build.buildNumber}}</clr-dg-cell>
             <clr-dg-cell>{{build.modifiedBy}}</clr-dg-cell>
             <clr-dg-cell>{{build.modifiedOn | date:'yyyy-MM-dd HH:mm:ss Z'}}</clr-dg-cell>
             <clr-dg-cell>{{build.buildDescription}}</clr-dg-cell>
@@ -93,16 +93,16 @@
 </div>
 -->
 
-<div style="margin: 10px;" class="limit-height-audit">
-    <clr-datagrid style="width: 80%; margin: auto;" class="datagrid-compact">
+<div style="margin: 5px;" class="limit-height-audit">
+    <clr-datagrid style="width: 98%; margin: auto;" class="datagrid-compact" [clrDgLoading]="loadingAudit">
         <clr-dg-placeholder>We couldn't find any audit entries!</clr-dg-placeholder>
 
-        <clr-dg-column [clrDgColType]="'string'">Environment</clr-dg-column>
-        <clr-dg-column [clrDgColType]="'string'">Status</clr-dg-column>
-        <clr-dg-column [clrDgColType]="'string'">Approver</clr-dg-column>
-        <clr-dg-column [clrDgSortOrder]="auditSort" [clrDgField]="'modifiedOn'" [clrDgColType]="'string'" [clrDgSortBy]="auditDateComparator">TimeStamp</clr-dg-column>
-        <clr-dg-column>Release Ticket ID</clr-dg-column>
-        <clr-dg-column>ExceptionMsg</clr-dg-column>
+        <clr-dg-column [style.width.px]="150" [clrDgColType]="'string'">Environment</clr-dg-column>
+        <clr-dg-column [style.width.px]="150" [clrDgColType]="'string'">Status</clr-dg-column>
+        <clr-dg-column [style.width.px]="100" [clrDgColType]="'string'">Approver</clr-dg-column>
+        <clr-dg-column [style.width.px]="250" [clrDgSortOrder]="auditSort" [clrDgField]="'modifiedOn'" [clrDgColType]="'string'" [clrDgSortBy]="auditDateComparator">TimeStamp</clr-dg-column>
+        <clr-dg-column [style.width.px]="250">Release Ticket ID</clr-dg-column>
+        <clr-dg-column >ExceptionMsg</clr-dg-column>
 
         <clr-dg-row *clrDgItems="let audit of auditEntries" [clrDgItem]="audit">
             <clr-dg-cell>{{audit.environment}}</clr-dg-cell>
@@ -122,3 +122,5 @@
     Selected entry: <span class="username" *ngIf="selectedEntry">{{selectedEntry.environment}}</span>
 </div>
 -->
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#4c879a" type = "ball-atom" [fullScreen] = "true"><p style="color: white" > Please Wait, Loading... </p></ngx-spinner>

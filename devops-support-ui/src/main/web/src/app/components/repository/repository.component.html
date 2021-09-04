@@ -1,18 +1,18 @@
-<div class="limit-height">
+<div style="margin: 5px; margin: auto" class="limit-height-repo">
 
   <!--  class="datagrid-compact" -->
-  <clr-datagrid [(clrDgSingleSelected)]="selectedRepo" [clrDgRowSelection]="true" #datagridRef>
-    <clr-dg-column class="id-column">ID</clr-dg-column>
-    <clr-dg-column>Type</clr-dg-column>
-    <clr-dg-column>URL</clr-dg-column>
+  <clr-datagrid [(clrDgSingleSelected)]="selectedRepo" [clrDgRowSelection]="true" #datagridRef class="datagrid-compact" [clrDgLoading]="loadingRepo">
+    <clr-dg-column [style.width.px]="50" class="id-column">ID</clr-dg-column>
+    <clr-dg-column [style.width.px]="150">Type</clr-dg-column>
+    <clr-dg-column [style.width.px]="450">URL</clr-dg-column>
     <!-- [clrDgField]="'description'" -->
-    <clr-dg-column>Description</clr-dg-column>
-    <clr-dg-column>Other Alias</clr-dg-column>
-    <clr-dg-column>FS Checkout Location</clr-dg-column>
-    <clr-dg-column>Tag Base</clr-dg-column>
-    <clr-dg-column>Group Email Address</clr-dg-column>
-    <clr-dg-column>Environment Group</clr-dg-column>
-    <clr-dg-column>Disabled?</clr-dg-column>
+    <clr-dg-column [style.width.px]="300">Description</clr-dg-column>
+    <clr-dg-column [style.width.px]="150">Other Alias</clr-dg-column>
+    <clr-dg-column [style.width.px]="150">FS Checkout Location</clr-dg-column>
+    <clr-dg-column [style.width.px]="150">Tag Base</clr-dg-column>
+    <clr-dg-column [style.width.px]="250">Group Email Address</clr-dg-column>
+    <clr-dg-column [style.width.px]="150">Environment Group</clr-dg-column>
+    <clr-dg-column [style.width.px]="100">Disabled?</clr-dg-column>
 
     <clr-dg-row *clrDgItems="let repo of data" [clrDgItem]="repo">
         <clr-dg-cell>{{repo.id}}</clr-dg-cell>
@@ -31,15 +31,12 @@
   </clr-datagrid>
 
   <div class="clr-row">
-    <div class="clr-col-md-8"></div>
-    <div class="clr-col-md-4">
+    <div style="margin: auto">
       <button class="btn btn-sm btn-info-outline" (click)="editRepoModal.open(newRepo)">Add New</button>
       <button class="btn btn-sm btn-info-outline" (click)="editRepoModal.open(selectedRepo)" *ngIf="selectedRepo">Modify Selected</button>
       <!--<button class="btn btn-sm btn-warning-outline" *ngIf="selectedRepo">Disable Selected</button>-->
     </div>
   </div>
-
-  <div *ngIf="selectedRepo">Selected: {{selectedRepo.url}}</div>
 
   <app-repositoryedit #editRepo></app-repositoryedit>
 

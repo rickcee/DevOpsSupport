@@ -35,7 +35,8 @@ import { AuthGuardService } from './auth-guard.service';
 import { ErrorInterceptor } from './ErrorInterceptor';
 import { ChartsModule } from 'ng2-charts';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-
+import { NgxSpinnerModule } from "ngx-spinner";
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,8 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     AppRoutingModule,
     ChartsModule,
     SimpleNotificationsModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxSpinnerModule
   ],
   providers: [AppService, AuthGuardService,
                   {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}

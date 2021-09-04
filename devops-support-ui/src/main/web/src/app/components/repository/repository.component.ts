@@ -13,6 +13,7 @@ export class RepositoryComponent implements OnInit {
   private gridApi;
   private gridColumnApi;
   private urlFilter = new UrlFilter();
+  private loadingRepo : boolean = false;
 
   //private modal: RepositoryeditComponent;
 
@@ -38,14 +39,17 @@ export class RepositoryComponent implements OnInit {
   }
 
   refreshRepositories() : void {
+    this.loadingRepo = true;
     this._service.getRepositories().subscribe(resp => {
+      this.loadingRepo = false;
       console.log("Repositories: " + resp.body);
       this.data = resp.body;
       //this.rowData = resp.body;
       console.log("gridApi: " + this.gridApi);
-  },
+      },
       error => {
-          console.log(error, "error");
+        this.loadingRepo = false;
+        console.log(error, "error");
       });
   }
 

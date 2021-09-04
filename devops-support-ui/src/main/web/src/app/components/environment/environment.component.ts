@@ -10,6 +10,7 @@ import { EnvironmentEditComponent } from 'app/components/environmentedit/environ
 export class EnvironmentComponent implements OnInit {
   environmentData : Environment[] = [];
   selectedEnv : Environment;
+  loadingEnv : boolean = false;
 
   @ViewChild('editEnv', { static: true }) editEnvModal: EnvironmentEditComponent;
 
@@ -24,12 +25,15 @@ export class EnvironmentComponent implements OnInit {
   }
 
   refreshEnvironments() : void {
+    this.loadingEnv = true;
     this._service.getEnvironment().subscribe(resp => {
+      this.loadingEnv = false;
       console.log("Environment: " + resp.body);
       this.environmentData = resp.body;
-  },
+      },
       error => {
-          console.log(error, "error");
+        this.loadingEnv = false;
+        console.log(error, "error");
       }); 
   }
 

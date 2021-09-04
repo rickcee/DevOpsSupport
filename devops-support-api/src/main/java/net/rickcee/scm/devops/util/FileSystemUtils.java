@@ -4,9 +4,9 @@
 package net.rickcee.scm.devops.util;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -37,9 +37,7 @@ public class FileSystemUtils {
 	private EnvironmentRepository envRepo;
 	
 	public void deployToEnvironment(String workspace, String environment, BuildDetails bd) throws Exception {
-		
 		String srcFile, destFile, allDestFiles = "";
-		File destFileLocation;
 		
 		String baseLocation = envRepo
 				.getOne(new ReleaseEnvironmentId(bd.getRepository().getEnvironmentGroup(), environment))
@@ -49,10 +47,6 @@ public class FileSystemUtils {
 
 			srcFile = workspace + "/" + file;
 			destFile = baseLocation + "/" + bd.getRepository().getFsLocation() + "/" + file;
-			destFileLocation = new File(destFile);
-			if(!destFileLocation.exists()) {
-				destFileLocation.mkdirs();
-			}
 			
 			log.info("Copy File: " + srcFile + " --> " + destFile);
 			allDestFiles = allDestFiles.concat(" " + destFile);
@@ -66,13 +60,25 @@ public class FileSystemUtils {
 	}
 	
 	public void copyFile(String source, String destination) throws Exception {
+		source = replaceInvalidChars(source);
+		destination = replaceInvalidChars(destination);
+		
 		log.info("Source File: [" + source + "]");
-		log.info("Source File Exists: " + new File(source).exists());
-		log.info("Source File to URI: [" + new File(source).toURI() + "]");
-		Path original = Paths.get(new File(source).toURI());
-		Path copied = Paths.get(new File(destination).toURI());
+		log.info("Destination File: [" + destination + "]");
 
-		Files.copy(original, copied, StandardCopyOption.REPLACE_EXISTING);
+		Path srcPath = Paths.get(new URI("file://" + source));
+		Path destPath = Paths.get(new URI("file://" + destination));
+		
+		log.info("Source Path: [" + srcPath + "]");
+		log.info("Destination Path: [" + destPath + "]");
+		
+		Files.createDirectories(destPath.getParent());
+
+		Files.copy(srcPath, destPath, StandardCopyOption.REPLACE_EXISTING);
+	}
+
+	private String replaceInvalidChars(String source) {
+		return source.replace("\r", "").replace("\n", "").replace("\t", "");
 	}
 	
 	public StringBuilder runCmd(String command) throws Exception {

@@ -1,0 +1,8 @@
+.limit-height-env clr-datagrid {
+    height: 500px;
+}
+
+.env-grid {
+    width: 98%; 
+    margin: auto;
+}
